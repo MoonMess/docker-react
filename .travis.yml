@@ -1,0 +1,23 @@
+language: generic
+sudo: required
+services:
+  -docker
+
+before_install:
+  - docker build -t monimage -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true monimage npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-3"
+  app: "Travis_React_app"
+  env : "Travisreactapp-env"
+  bucket_name: "elasticbeanstalk-eu-west-3-710685012853"
+  bucket_path: "Travis_React_app"
+  on :
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
