@@ -17,7 +17,7 @@ deploy:
   bucket_name: "elasticbeanstalk-eu-west-3-710685012853"
   bucket_path: "Travis_React_app"
   on :
-    branch: main
+    branch: master
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
 
